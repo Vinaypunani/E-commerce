@@ -1,0 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Prata&display=swap');
+
+@import "tailwindcss";
+
+*{
+  font-family: 'Poppins', sans-serif;
+}
+
+
+a.active div {
+  display: block;
+}
+
+@media (max-width: 640px) {
+  a.active {
+    background-color: #000;
+    color: #fff;
+  }
+}
