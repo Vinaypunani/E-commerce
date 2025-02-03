@@ -6,10 +6,21 @@
   font-family: 'Poppins', sans-serif;
 }
 
+.hero-text{
+  font-family: 'Prata', 'sans-serif';
+}
 
 a.active div {
   display: block;
 }
+
+/* Chrome, Safari, Edge, Opera */
+.number-input::-webkit-outer-spin-button,
+.number-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
 
 ::-webkit-scrollbar{
   display: none;

@@ -13,7 +13,7 @@ const Hero = () => {
                         <p className='uppercase text-sm font-semibold'>Our bestsellers</p>
                     </div>
                     <div>
-                        <p className='text-4xl sm:py-3 lg:text-5xl leading-tight font-[prata]'>Latest Arrivals</p>
+                        <p className='hero-text text-4xl sm:py-3 lg:text-5xl leading-tight'>Latest Arrivals</p>
                     </div>
 
                     <Link to={'/collection'} className='text-sm font-bold uppercase flex items-center gap-2'>

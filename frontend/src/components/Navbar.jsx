@@ -5,7 +5,8 @@ import { ShopContext } from '../context/ShopContext'
 
 const Navbar = () => {
 
-    const {setShowSearch,getCartCount} = useContext(ShopContext)
+
+    const {setShowSearch,getCartCount,navigate} = useContext(ShopContext)
 
     const [visible, setVisible] = useState(false)
 
@@ -47,7 +48,10 @@ const Navbar = () => {
 
             <div className='flex items-center gap-6'>
                 <img 
-                onClick={()=>setShowSearch(true)}
+                onClick={()=>{
+                    setShowSearch(true)
+                    navigate('/collection')
+                }}
                 src={assets.search_icon} alt="search"
                     className='w-5 cursor-pointer'
                 />
@@ -80,23 +84,23 @@ const Navbar = () => {
             <div className={`absolute top-0 right-0 bottom-0 overflow-hidden bg-white transition-all duration-200 ${visible ? 'w-full' : 'w-0'}`}>
                 <div className='flex flex-col text-gray-600'>
                     <div onClick={() => setVisible(false)}
-                        className={`flex items-center gap-4 p-3 cursor-pointer`}>
+                        className={`flex items-center gap-4 p-3 cursor-pointer mb-3`}>
                         <img src={assets.dropdown_icon} alt="close"
                             className='h-4 rotate-180'
                         />
                         <p className='font-medium'>Back</p>
                     </div>
 
-                    <NavLink to={'/'} onClick={() => setVisible(false)} className='py-2 pl-6 border-b'>
+                    <NavLink to={'/'} onClick={() => setVisible(false)} className='py-3 pl-6 border-b border-gray-200'>
                         <p className='font-medium'>HOME</p>
                     </NavLink>
-                    <NavLink to={'/collection'} onClick={() => setVisible(false)} className='py-2 pl-6 border-b'>
+                    <NavLink to={'/collection'} onClick={() => setVisible(false)} className='py-3 pl-6 border-b border-gray-200'>
                         <p className='font-medium'>COLLECTION</p>
                     </NavLink>
-                    <NavLink to={'/about'} onClick={() => setVisible(false)} className='py-2 pl-6 border-b'>
+                    <NavLink to={'/about'} onClick={() => setVisible(false)} className='py-3 pl-6 border-b border-gray-200'>
                         <p className='font-medium'>ABOUT</p>
                     </NavLink>
-                    <NavLink to={'/contact'} onClick={() => setVisible(false)} className='py-2 pl-6 border-b'>
+                    <NavLink to={'/contact'} onClick={() => setVisible(false)} className='py-3 pl-6 border-b border-gray-200'>
                         <p className='font-medium'>CONTACT</p>
                     </NavLink>
                 </div>
