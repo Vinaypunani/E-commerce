@@ -67,7 +67,20 @@ const loginUser = async (req, res) => {
 }
 
 const adminLogin = async (req, res) => {
+    try {
+        const {email,password} = req.body
 
+        if(email.toLowerCase() === process.env.ADMIN_EMAIL && password === process.env.ADMIN_PASSWORD){
+            const token = jwt.sign(email.toLowerCase()+password,process.env.JWT_SECRET)
+            res.json({success:true,token})
+        }else{
+            res.json({success:false,message:"Email or password is incorrect"})
+        }
+
+    } catch (error) {
+        console.log(error)
+        res.json({success:false,message:error.message})
+    }
 }
 
 module.exports = { loginUser, registerUser, adminLogin }

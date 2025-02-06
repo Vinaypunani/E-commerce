@@ -2,15 +2,18 @@ const express = require('express')
 const dotenv = require('dotenv')
 dotenv.config()
 const cors = require('cors')
+const connectCloudinary = require('./config/cloudinary.js')
 
 const connectDB = require('./config/mongodb.js')
 
 const userRouter = require("./routes/user.routes.js")
+const productRouter = require('./routes/product.routes.js')
 
 // app config
 const app = express()
 const PORT = process.env.PORT || 7001
 connectDB()
+connectCloudinary()
 
 // middleware
 app.use(express.json())
@@ -20,5 +23,6 @@ app.use(cors())
 // api endPoints
 
 app.use('/api/user',userRouter)
+app.use('/api/product',productRouter)
 
 app.listen(PORT,()=>console.log(`Server Running on ${PORT}`))
