@@ -10,6 +10,8 @@ const Navbar = () => {
 
     const [visible, setVisible] = useState(false)
 
+    const [dropdown, setDropdown] = useState(false)
+
     const logout = () => {
         localStorage.removeItem('token')
         setToken('')
@@ -66,21 +68,27 @@ const Navbar = () => {
 
                 <div className='group relative'>
                     <img
-                        onClick={() => token ? null : navigate('/login')}
+                        onClick={() => {token ? null : navigate('/login')
+                            setDropdown(!dropdown)
+                        }}
                         className='w-5 cursor-pointer' src={assets.profile_icon} alt="profile" />
 
                     {/* Dropdown Menu  */}
 
                     {
-                        token && (
-                            <div className='group-hover:block hidden absolute dropdown-menu right-0 pt-4'>
+                        (token && dropdown)  && (
+                            <div className={`${dropdown ? 'block' : 'hidden'} absolute dropdown-menu right-0 pt-4`}>
                                 <div className='flex flex-col gap-2 w-36 py-3 px-5 bg-slate-100 rounded text-gray-500'>
                                     <p className='cursor-pointer hover:text-black '>My Profile</p>
                                     <p 
-                                    onClick={()=> navigate('/orders')}
+                                    onClick={()=> {navigate('/orders')
+                                        setDropdown(false)
+                                    }}
                                     className='cursor-pointer hover:text-black '>Orders</p>
                                     <p
-                                        onClick={() => logout()}
+                                        onClick={() => {logout()
+                                            setDropdown(false)
+                                        }}
                                         className='cursor-pointer hover:text-black '>Logout</p>
                                 </div>
                             </div>
