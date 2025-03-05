@@ -7,7 +7,12 @@ const ProductItem = ({id,image,name,price}) => {
     const { currency } = useContext(ShopContext)
 
   return (
-    <Link to={`/product/${id}`}
+    <Link
+    onClick={()=>window.scrollTo({
+        top:0,
+        behavior:'smooth'
+    })}
+    to={`/product/${id}`}
         className='text-gray-700 cursor-pointer'
     >
         <div className='overflow-hidden'>

@@ -65,7 +65,7 @@ const Collection = () => {
 
   useEffect(()=>{
     applyFilter()
-  },[category, subcategory,search,showSearch])
+  },[category, subcategory,search,showSearch,products])
 
   useEffect(()=>{
     sortProducts()
@@ -168,7 +168,7 @@ const Collection = () => {
           {
             filteredProducts.map((item,index)=>{
               return(
-                <ProductItem key={index} id={item._id} name={item.name} price={item.price} image={item.image} />
+                <ProductItem key={index} id={item._id} name={item.name} price={item.price} image={item.images} />
               )
             })
           }

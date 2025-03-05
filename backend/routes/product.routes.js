@@ -11,8 +11,8 @@ router.post('/add',adminAuth,upload.fields([
     {name:"image3" , maxCount:1},
     {name:"image4" , maxCount:1}
 ]),productController.addProduct)
-router.delete('/remove',adminAuth,productController.removeProduct)
-router.get('/single',adminAuth,productController.singleProduct)
-router.get('/list',adminAuth,productController.listProducts)
+router.post('/remove',adminAuth,productController.removeProduct)
+router.get('/single',productController.singleProduct)
+router.get('/list',productController.listProducts)
 
 module.exports = router

@@ -6,25 +6,32 @@ import CartTotal from '../components/CartTotal'
 
 const Cart = () => {
 
-  const { products, currency, cartItems, updateQuantity, navigate } = useContext(ShopContext)
+  const { products, currency, cartItems, updateQuantity, navigate,token } = useContext(ShopContext)
 
   const [cartData, setCartData] = useState([])
 
-  useEffect(() => {
-    let tempData = []
-    for (const product in cartItems) {
-      for (const size in cartItems[product]) {
-        if (cartItems[product][size] > 0) {
-          tempData.push({
-            _id: product,
-            size: size,
-            quantity: cartItems[product][size],
-          })
+
+  const fetchCart = () =>{
+    if (products.length > 0) {
+      let tempData = []
+      for (const product in cartItems) {
+        for (const size in cartItems[product]) {
+          if (cartItems[product][size] > 0) {
+            tempData.push({
+              _id: product,
+              size: size,
+              quantity: cartItems[product][size],
+            })
+          }
         }
       }
+      setCartData(tempData)
     }
-    setCartData(tempData)
-  }, [cartItems])
+  }
+
+  useEffect(() => {
+    fetchCart()
+  }, [cartItems, products,token])
 
 
   return cartData.length > 0 ? (
@@ -39,7 +46,7 @@ const Cart = () => {
             return (
               <div key={index} className='py-4 border-t border-b border-gray-200 text-gray-700 grid grid-cols-[4fr_0.5fr_0.5fr] sm:grid-cols-[4fr_2fr_0.5fr] items-center gap-4 '>
                 <div className='flex items-center gap-6 '>
-                  <img className='w-16 sm:w-20' src={productData.image[0]} alt="" />
+                  <img className='w-16 sm:w-20' src={productData.images[0]} alt="" />
                   <div>
                     <p className='text-xs sm:text-lg font-medium'>{productData.name}</p>
                     <div className='flex items-center gap-5 mt-2'>
@@ -71,18 +78,18 @@ const Cart = () => {
           <CartTotal />
 
           <div className='w-full text-end my-7'>
-            <button onClick={() =>navigate('/place-order')} className='cursor-pointer self-end bg-black text-white px-7 text-sm py-3 uppercase'>
+            <button onClick={() => navigate('/place-order')} className='cursor-pointer self-end bg-black text-white px-7 text-sm py-3 uppercase'>
               Proceed to Checkout
             </button>
           </div>
         </div>
       </div>
     </div>
-  ):(
+  ) : (
     <div className='text-center mt-20'>
       <p className='text-2xl'>Your cart is empty</p>
       <p className='text-sm text-gray-500'>Add items to your cart to proceed to checkout</p>
-      
+
       <p onClick={() => navigate('/collection')} className='bg-black text-white px-7 text-sm py-3 uppercase mt-5 cursor-pointer w-fit mx-auto'>
         Continue Shopping
       </p>

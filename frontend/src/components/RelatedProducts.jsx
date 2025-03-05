@@ -16,7 +16,7 @@ const RelatedProducts = ({ category, subCategory }) => {
 
     useEffect(() => {
         fetchRelatedProducts()
-    }, [category, subCategory])
+    }, [category, subCategory,products])
 
     return (
         <div className='mt-20 text-center'>
@@ -26,7 +26,7 @@ const RelatedProducts = ({ category, subCategory }) => {
 
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 gap-y-6">
                 {relatedProducts.map((item,index) => (
-                    <ProductItem key={index} id={item._id} image={item.image} name={item.name} price={item.price} />
+                    <ProductItem key={index} id={item._id} image={item.images} name={item.name} price={item.price} />
                 ))}
             </div>
         </div>
